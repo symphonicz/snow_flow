@@ -1,4 +1,4 @@
-package app.snowflow.snow_flow
+package com.symphonicz.snowflow
 
 import io.flutter.embedding.android.FlutterActivity
 
