@@ -1,0 +1,28 @@
+# ตรวจโค้ดทุก PR และถูกเรียกซ้ำจาก deploy.yml ก่อน build
+# ชื่อ job `test` เป็น required status check ใน ruleset ของ main (docs/GITHUB_SETUP.md)
+# เปลี่ยนชื่อ job เมื่อไรต้องแก้ ruleset ด้วย ไม่อย่างนั้น PR จะค้างรอ check
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # เลข Flutter อ่านจาก environment.flutter ใน pubspec.yaml ที่เดียว
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
