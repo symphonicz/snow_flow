@@ -9,7 +9,7 @@ workflow อยู่ใน `.github/workflows/`:
 
 ## 1. Pages
 
-- [ ] Settings → Pages → Build and deployment → Source = **GitHub Actions**
+- [x] Settings → Pages → Build and deployment → Source = **GitHub Actions**
 
 ต้องตั้งก่อน merge PR แรกที่มี `deploy.yml` ไม่อย่างนั้น job `deploy` รอบแรกจะล้ม (ตั้งแล้วกด Run workflow ใหม่ได้)
 
@@ -21,7 +21,7 @@ Settings → Rules → Rulesets → `protect-main`
 - [x] Require a pull request before merging, required approvals = 0
 - [x] Restrict deletions, Block force pushes
 - [x] Bypass list: Repository admin แบบ *For pull requests only*
-- [ ] Require status checks to pass → เพิ่ม check **`test`** (จาก GitHub Actions) และ**ไม่ติ๊ก** "Require branches to be up to date before merging"
+- [x] Require status checks to pass → เพิ่ม check **`test`** (จาก GitHub Actions) และ**ไม่ติ๊ก** "Require branches to be up to date before merging"
 
 ข้อควรระวัง:
 
@@ -36,4 +36,7 @@ workflow ห้ามใช้ `pull_request_target` และไม่มี se
 
 ## ตั้งผ่าน `gh`
 
-ข้อที่ติ๊กแล้วตั้งผ่าน `gh` ตาม [comment ใน #40](https://github.com/symphonicz/snow_flow/issues/40) ข้อที่ยังไม่ติ๊กก็ตั้งผ่าน `gh api` ได้เหมือนกัน (ให้ Claude ตั้งให้ได้ แต่ต้องอนุญาตใหม่ทุกครั้ง) ถ้าต้องตั้ง repo ใหม่ ทำตามรายการด้านบนได้ทั้งในหน้าเว็บและผ่าน `gh api`
+ทุกข้อด้านบนตั้งผ่าน `gh api` ตาม comment ใน [#40](https://github.com/symphonicz/snow_flow/issues/40) (Claude ตั้งให้ได้ แต่ต้องอนุญาตใหม่ทุกครั้ง) ถ้าต้องตั้ง repo ใหม่ ทำตามรายการด้านบนได้ทั้งในหน้าเว็บและผ่าน `gh api`:
+
+- Pages: `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`
+- check `test` ใน ruleset: rule `required_status_checks` ที่มี `{"context": "test", "integration_id": 15368}` (15368 = GitHub Actions) และ `strict_required_status_checks_policy: false`
