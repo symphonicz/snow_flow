@@ -1,0 +1,64 @@
+# merge เข้า main → ตรวจซ้ำ → build เว็บ → deploy ขึ้น GitHub Pages
+# https://symphonicz.github.io/snow_flow/
+name: Deploy web
+
+on:
+  push:
+    branches: [main]
+    # แก้แค่เอกสารไม่ต้อง deploy
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# รอบใหม่ยกเลิกรอบเก่าที่ยังค้างอยู่
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # GIT_COMMIT = รหัส commit 7 ตัว แสดงในแถวเวอร์ชันของหน้าตั้งค่า
+      # --pwa-strategy=none ปิด service worker ของ Flutter (ใช้ของเราเองแทน)
+      - name: Build web
+        run: >-
+          flutter build web --release
+          --base-href /snow_flow/
+          --pwa-strategy=none
+          --dart-define=GIT_COMMIT=${GITHUB_SHA::7}
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
