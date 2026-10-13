@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:snow_flow/core/core_injection.dart';
+import 'package:snow_flow/features/entry_form/entry_form_injection.dart';
+import 'package:snow_flow/features/settings/settings_injection.dart';
 import 'package:snow_flow/shared/shared_injection.dart';
 
 /// Composition root for get_it: registers core → shared → every feature, in
@@ -9,4 +11,6 @@ void configureDependencies([GetIt? getIt]) {
   final locator = getIt ?? GetIt.instance;
   registerCore(locator);
   registerShared(locator);
+  registerEntryForm(locator);
+  registerSettings(locator);
 }
