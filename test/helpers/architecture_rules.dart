@@ -9,7 +9,13 @@ const compositionRoots = {'lib/injection.dart', 'lib/router.dart'};
 const defaultChartFiles = <String>{};
 
 const _domainAllowedDart = {'dart:core', 'dart:async', 'dart:convert'};
-const _domainAllowedPackages = {'fpdart', 'equatable', 'meta', 'uuid'};
+const _domainAllowedPackages = {
+  'fpdart',
+  'equatable',
+  'meta',
+  'uuid',
+  'characters',
+};
 const _lineWidgets = ['Divider', 'VerticalDivider', 'Border', 'BorderSide'];
 
 final _directive = RegExp(

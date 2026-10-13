@@ -78,6 +78,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
+import 'package:characters/characters.dart';
 import 'package:snow_flow/shared/domain/entry.dart';
 import 'package:snow_flow/features/entries/domain/failure.dart';
 ''',
@@ -86,10 +87,11 @@ import 'package:snow_flow/features/entries/domain/failure.dart';
       );
     });
 
-    test('domain must not import Flutter, hive_ce, data, presentation or core',
-        () {
-      final violations = check({
-        'lib/shared/domain/entry.dart': '''
+    test(
+      'domain must not import Flutter, hive_ce, data, presentation or core',
+      () {
+        final violations = check({
+          'lib/shared/domain/entry.dart': '''
 import 'package:flutter/foundation.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:snow_flow/shared/data/entry_model.dart';
@@ -97,9 +99,10 @@ import 'package:snow_flow/features/entries/presentation/x.dart';
 import 'package:snow_flow/core/money_format.dart';
 import 'dart:io';
 ''',
-      });
-      expect(violations, hasLength(6));
-    });
+        });
+        expect(violations, hasLength(6));
+      },
+    );
 
     test('relative imports are rejected so the rules cannot be bypassed', () {
       expect(
@@ -151,10 +154,11 @@ const c = DividerThemeData(color: Colors.transparent);
 
   test('lib/ follows the architecture rules', () {
     final sources = <String, String>{
-      for (final file in Directory('lib')
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.dart')))
+      for (final file
+          in Directory('lib')
+              .listSync(recursive: true)
+              .whereType<File>()
+              .where((f) => f.path.endsWith('.dart')))
         file.path.replaceAll(r'\', '/'): file.readAsStringSync(),
     };
     expect(sources, isNotEmpty);
