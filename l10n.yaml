@@ -1,0 +1,9 @@
+# gen-l10n settings (#14, #52). Thai is the main language, so app_th.arb is
+# the template every other ARB must match. The generated Dart files are
+# committed (#52) so `flutter analyze` needs no generation step.
+arb-dir: lib/core/l10n
+output-dir: lib/core/l10n
+template-arb-file: app_th.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+nullable-getter: false

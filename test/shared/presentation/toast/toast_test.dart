@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:snow_flow/core/l10n/app_locale.dart';
+import 'package:snow_flow/core/l10n/app_localizations.dart';
 import 'package:snow_flow/core/theme/app_theme.dart';
 import 'package:snow_flow/shared/domain/entry_category.dart';
 import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
@@ -22,12 +23,8 @@ Future<void> pumpApp(
       darkTheme: AppTheme.dark,
       themeMode: mode,
       locale: locale,
-      supportedLocales: const [Locale('en'), Locale('th')],
-      localizationsDelegates: const [
-        _AnyLocale<MaterialLocalizations>(DefaultMaterialLocalizations.load),
-        _AnyLocale<CupertinoLocalizations>(DefaultCupertinoLocalizations.load),
-        _AnyLocale<WidgetsLocalizations>(DefaultWidgetsLocalizations.load),
-      ],
+      supportedLocales: appLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       builder: (context, child) => ToastHost(child: child!),
       // Centred so the toast at the top never covers the button.
       home: Scaffold(
@@ -42,25 +39,6 @@ Future<void> pumpApp(
       ),
     ),
   );
-}
-
-/// Lets the app run in Thai before the real delegates of #52 exist.
-class _AnyLocale<T> extends LocalizationsDelegate<T> {
-  const _AnyLocale(this._load);
-
-  final Future<T> Function(Locale locale) _load;
-
-  @override
-  bool isSupported(Locale locale) => true;
-
-  @override
-  Future<T> load(Locale locale) => _load(locale);
-
-  @override
-  bool shouldReload(_AnyLocale<T> old) => false;
-
-  @override
-  Type get type => T;
 }
 
 Future<void> tapShow(WidgetTester tester) async {

@@ -64,13 +64,12 @@ class EllipseShape extends IconShape {
   List<Object> get props => [cx, cy, rx, ry];
 }
 
-/// A fixed category from brief §5. Colors are ARGB ints because domain/
-/// must not import Flutter (#54).
+/// A fixed category from brief §5. Its name is in the ARB files, looked up
+/// by [id] (#52). Colors are ARGB ints because domain/ must not import
+/// Flutter (#54).
 class EntryCategory extends Equatable {
   const EntryCategory({
     required this.id,
-    required this.nameTh,
-    required this.nameEn,
     required this.types,
     required this.lightColor,
     int? darkColor,
@@ -79,8 +78,6 @@ class EntryCategory extends Equatable {
 
   /// Stored in entries and backups; never change it.
   final String id;
-  final String nameTh;
-  final String nameEn;
   final Set<EntryType> types;
   final int lightColor;
   final int darkColor;
@@ -96,8 +93,6 @@ class EntryCategory extends Equatable {
 abstract final class Categories {
   static const food = EntryCategory(
     id: 'food',
-    nameTh: 'อาหาร',
-    nameEn: 'Food',
     types: {EntryType.expense},
     lightColor: 0xFFE07B39,
     icon: [
@@ -108,8 +103,6 @@ abstract final class Categories {
 
   static const transport = EntryCategory(
     id: 'transport',
-    nameTh: 'เดินทาง',
-    nameEn: 'Transport',
     types: {EntryType.expense},
     lightColor: 0xFF3B82C4,
     icon: [
@@ -120,8 +113,6 @@ abstract final class Categories {
 
   static const shopping = EntryCategory(
     id: 'shopping',
-    nameTh: 'ช้อปปิ้ง',
-    nameEn: 'Shopping',
     types: {EntryType.expense},
     lightColor: 0xFFB04A9A,
     icon: [PathShape('M6 8h12l-1 12H7L6 8Z'), PathShape('M9 8a3 3 0 0 1 6 0')],
@@ -129,8 +120,6 @@ abstract final class Categories {
 
   static const bills = EntryCategory(
     id: 'bills',
-    nameTh: 'บิล/ค่าน้ำไฟ',
-    nameEn: 'Bills',
     types: {EntryType.expense},
     lightColor: 0xFF6B5BC4,
     icon: [PathShape('M13 3 6 13h5l-1 8 7-10h-5l1-8Z')],
@@ -138,8 +127,6 @@ abstract final class Categories {
 
   static const fun = EntryCategory(
     id: 'fun',
-    nameTh: 'บันเทิง',
-    nameEn: 'Fun',
     types: {EntryType.expense},
     lightColor: 0xFFC99412,
     icon: [
@@ -151,8 +138,6 @@ abstract final class Categories {
 
   static const health = EntryCategory(
     id: 'health',
-    nameTh: 'สุขภาพ',
-    nameEn: 'Health',
     types: {EntryType.expense},
     lightColor: 0xFF2A9D8F,
     icon: [
@@ -164,8 +149,6 @@ abstract final class Categories {
 
   static const other = EntryCategory(
     id: 'other',
-    nameTh: 'อื่นๆ',
-    nameEn: 'Other',
     types: {EntryType.expense, EntryType.income},
     lightColor: 0xFF7C879A,
     icon: [
@@ -177,8 +160,6 @@ abstract final class Categories {
 
   static const salary = EntryCategory(
     id: 'salary',
-    nameTh: 'เงินเดือน',
-    nameEn: 'Salary',
     types: {EntryType.income},
     lightColor: 0xFF0B7A63,
     darkColor: 0xFF4CC3A6,
@@ -190,8 +171,6 @@ abstract final class Categories {
 
   static const side = EntryCategory(
     id: 'side',
-    nameTh: 'รายได้เสริม',
-    nameEn: 'Side income',
     types: {EntryType.income},
     lightColor: 0xFF2A9D8F,
     icon: [
@@ -204,8 +183,6 @@ abstract final class Categories {
 
   static const transfer = EntryCategory(
     id: 'transfer',
-    nameTh: 'ได้รับโอน',
-    nameEn: 'Received',
     types: {EntryType.income},
     lightColor: 0xFF3B82C4,
     icon: [PathShape('M17 7 7 17M7 9v8h8')],

@@ -11,8 +11,8 @@ void main() {
   });
 
   test('byId finds a category or returns null', () {
-    expect(Categories.byId('food')?.nameTh, 'อาหาร');
-    expect(Categories.byId('transfer')?.nameEn, 'Received');
+    expect(Categories.byId('food'), Categories.food);
+    expect(Categories.byId('transfer'), Categories.transfer);
     expect(Categories.byId('other_e'), isNull);
     expect(Categories.byId('Food'), isNull);
   });
@@ -74,10 +74,8 @@ void main() {
     );
   });
 
-  test('every category has names and an icon', () {
+  test('every category has an icon (names are in the ARB files, #52)', () {
     for (final category in Categories.all) {
-      expect(category.nameTh, isNotEmpty, reason: category.id);
-      expect(category.nameEn, isNotEmpty, reason: category.id);
       expect(category.icon, isNotEmpty, reason: category.id);
     }
   });

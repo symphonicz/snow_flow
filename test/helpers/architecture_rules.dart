@@ -5,6 +5,11 @@ library;
 /// Files allowed to import every feature (composition roots).
 const compositionRoots = {'lib/injection.dart', 'lib/router.dart'};
 
+/// Written by gen-l10n, which uses relative imports; never edited by hand
+/// (#52).
+bool isGenerated(String path) =>
+    path.startsWith('lib/core/l10n/app_localizations');
+
 /// Files allowed to draw lines (the chart baseline). None exist yet.
 const defaultChartFiles = <String>{};
 
