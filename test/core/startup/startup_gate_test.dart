@@ -3,6 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:snow_flow/core/startup/app_storage.dart';
 import 'package:snow_flow/core/startup/startup_cubit.dart';
 import 'package:snow_flow/core/startup/startup_gate.dart';
+import 'package:snow_flow/core/theme/app_theme.dart';
+import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
+import 'package:snow_flow/shared/presentation/icons/line_icon.dart';
 
 import '../../helpers/fakes/fake_startup.dart';
 
@@ -151,6 +154,51 @@ void main() {
       expect(find.text('the app'), findsNothing);
       expect(find.text('SnowFlow is open in another tab'), findsOneWidget);
       expect(storage.closeCount, 1);
+    });
+  });
+
+  group('theme (#51)', () {
+    testWidgets('follows the device brightness with the token themes', (
+      tester,
+    ) async {
+      tabLock.heldElsewhere = true;
+      await pumpGate(tester);
+
+      final app = tester.widget<MaterialApp>(find.byType(MaterialApp));
+      expect(app.theme, AppTheme.light);
+      expect(app.darkTheme, AppTheme.dark);
+      expect(app.themeMode, ThemeMode.system);
+    });
+
+    testWidgets('uses the app line icons', (tester) async {
+      tabLock.heldElsewhere = true;
+      await pumpGate(tester);
+
+      expect(find.byType(Icon), findsNothing);
+      expect(
+        tester.widget<LineIcon>(find.byType(LineIcon)).shapes,
+        AppIcons.appWindow,
+      );
+    });
+
+    testWidgets('the delete buttons use the expense colour', (tester) async {
+      storage.results.add(const StorageBroken({StoredData.entries}));
+      await pumpGate(tester);
+      Color? colorOf(String label) => tester
+          .widget<TextButton>(
+            find.ancestor(
+              of: find.text(label),
+              matching: find.byType(TextButton),
+            ),
+          )
+          .style!
+          .foregroundColor!
+          .resolve({});
+
+      expect(colorOf('Start over (delete old data)'), const Color(0xFFB93E0B));
+      await tester.tap(find.text('Start over (delete old data)'));
+      await tester.pumpAndSettle();
+      expect(colorOf('Delete'), const Color(0xFFB93E0B));
     });
   });
 

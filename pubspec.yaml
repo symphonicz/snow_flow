@@ -46,6 +46,8 @@ dependencies:
   characters: ^1.4.0
   hive_ce_flutter: ^2.3.4
   web: ^1.1.1
+  path_parsing: ^1.1.0
+  google_fonts: ^8.1.0
 
 dev_dependencies:
   flutter_test:
@@ -101,3 +103,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  assets:
+    # Fonts for google_fonts, bundled so the app never downloads one
+    # (brief §2). Files keep the names google_fonts looks for, so never
+    # rename them. Only the weights brief §6 uses, plus their OFL licences
+    # (#51).
+    - assets/google_fonts/
