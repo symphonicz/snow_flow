@@ -6,10 +6,11 @@ import 'package:snow_flow/shared/shared_injection.dart';
 
 /// Composition root for get_it: registers core → shared → every feature, in
 /// that order. The only file besides `router.dart` allowed to import every
-/// feature (ADR 0003).
-void configureDependencies([GetIt? getIt]) {
+/// feature (ADR 0003). Opens the hive_ce boxes, so Hive must be initialised;
+/// when a box cannot be opened nothing after core is registered (#18 Q5.1).
+Future<void> configureDependencies([GetIt? getIt]) async {
   final locator = getIt ?? GetIt.instance;
-  registerCore(locator);
+  await registerCore(locator);
   registerShared(locator);
   registerEntryForm(locator);
   registerSettings(locator);

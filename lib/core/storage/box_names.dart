@@ -4,4 +4,6 @@
 abstract final class BoxNames {
   static const entries = 'snowflow_entries';
   static const settings = 'snowflow_settings';
+
+  static const all = [entries, settings];
 }
