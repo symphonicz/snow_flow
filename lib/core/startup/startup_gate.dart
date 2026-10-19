@@ -5,6 +5,10 @@ import 'package:snow_flow/core/startup/app_storage.dart';
 import 'package:snow_flow/core/startup/startup_cubit.dart';
 import 'package:snow_flow/core/startup/startup_state.dart';
 import 'package:snow_flow/core/startup/startup_texts.dart';
+import 'package:snow_flow/core/theme/app_theme.dart';
+import 'package:snow_flow/shared/domain/entry_category.dart';
+import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
+import 'package:snow_flow/shared/presentation/icons/line_icon.dart';
 
 /// Shows the app only once [cubit] is ready, and a startup screen otherwise
 /// (#56). The app is built fresh each time it becomes ready, because coming
@@ -49,7 +53,7 @@ class _StartupGateState extends State<StartupGate> {
 
 /// Its own [MaterialApp]: these screens show before the app's theme, router
 /// and settings exist, so they follow the device's brightness and language.
-/// Sizes and colours are plain Material until the theme file of #51 exists.
+/// Light and dark come from the theme file of #51.
 class _StartupApp extends StatelessWidget {
   const _StartupApp({
     required this.state,
@@ -66,13 +70,14 @@ class _StartupApp extends StatelessWidget {
     final texts = StartupTexts.of(View.of(context).platformDispatcher.locale);
     return MaterialApp(
       title: 'SnowFlow',
-      theme: ThemeData(),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.system,
       home: Scaffold(
         body: switch (state) {
           StartupLoading() || StartupReady() => const SizedBox.shrink(),
           StartupOtherTab() => _StartupMessage(
-            icon: Icons.tab_outlined,
+            icon: AppIcons.appWindow,
             title: texts.otherTabTitle,
             body: texts.otherTabBody,
             actions: [
@@ -83,7 +88,7 @@ class _StartupApp extends StatelessWidget {
             ],
           ),
           StartupUnavailable() => _StartupMessage(
-            icon: Icons.storage_outlined,
+            icon: AppIcons.database,
             title: texts.unavailableTitle,
             body: isWeb
                 ? '${texts.unavailableBody} ${texts.privateWindowTip}'
@@ -93,7 +98,7 @@ class _StartupApp extends StatelessWidget {
             ],
           ),
           StartupUnreadable(:final broken) => _StartupMessage(
-            icon: Icons.error_outline,
+            icon: AppIcons.circleAlert,
             title: texts.unreadableTitle,
             body: texts.unreadableBody(broken),
             actions: [
@@ -150,10 +155,9 @@ class _StartOverButton extends StatelessWidget {
     );
   }
 
-  /// Marks the buttons that delete data. The `expense` token once #51 lands.
-  static ButtonStyle _deleteStyle(BuildContext context) => TextButton.styleFrom(
-    foregroundColor: Theme.of(context).colorScheme.error,
-  );
+  /// Marks the buttons that delete data with the `expense` token.
+  static ButtonStyle _deleteStyle(BuildContext context) =>
+      TextButton.styleFrom(foregroundColor: AppColors.of(context).expense);
 }
 
 /// Icon, title, text and buttons, centred and scrollable so a narrow screen
@@ -166,7 +170,7 @@ class _StartupMessage extends StatelessWidget {
     required this.actions,
   });
 
-  final IconData icon;
+  final List<IconShape> icon;
   final String title;
   final String body;
   final List<Widget> actions;
@@ -177,15 +181,17 @@ class _StartupMessage extends StatelessWidget {
     return SafeArea(
       child: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(AppSpacing.s24),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
+            constraints: const BoxConstraints(
+              maxWidth: AppSizes.messageMaxWidth,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              spacing: 12,
+              spacing: AppSpacing.s12,
               children: [
-                Icon(icon, size: 48),
+                LineIcon(icon, size: AppSizes.iconLarge),
                 Text(
                   title,
                   style: textTheme.headlineSmall,
@@ -196,7 +202,7 @@ class _StartupMessage extends StatelessWidget {
                   style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: AppSpacing.s12),
                 ...actions,
               ],
             ),

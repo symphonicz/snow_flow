@@ -29,4 +29,4 @@
 - `test/architecture_test.dart` บังคับกฎ import: `domain/` ใช้ได้เฉพาะ allowlist (`dart:core`/`dart:async`/`dart:convert`, `fpdart`, `equatable`, `meta`, `uuid`, `characters` และ `domain/` ด้วยกัน — `characters` เพิ่มใน #54 เพื่อนับความยาวโน้ตตามที่คนเห็น), ฟีเจอร์ห้าม import ฟีเจอร์อื่น, `core/` และ `shared/` ห้าม import ฟีเจอร์ ถ้าจะเพิ่ม package ใน `domain/` ต้องแก้ allowlist อย่างตั้งใจ
 - เปิด lint `always_use_package_imports` เพื่อให้ test ตรวจ import ได้ (ห้ามใช้ `../`)
 - `test/` มีโครงเหมือน `lib/` ใช้ fake ที่เขียนเอง (`test/helpers/fakes/`) เป็นหลัก ใช้ mocktail เฉพาะกรณีที่ fake จำลองได้ยาก และมี contract test ชุดเดียวที่รันกับทั้ง fake และ repository hive_ce จริง
-- package ที่เพิ่ม: `fpdart`, `get_it`, `go_router`, `characters` (#54) และ (dev) `mocktail`, `bloc_test`
+- package ที่เพิ่ม: `fpdart`, `get_it`, `go_router`, `characters` (#54), `path_parsing` และ `google_fonts` (#51 วาดไอคอนลายเส้นและฟอนต์ที่เก็บในแอป) และ (dev) `mocktail`, `bloc_test`
