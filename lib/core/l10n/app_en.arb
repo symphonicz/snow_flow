@@ -1,0 +1,42 @@
+{
+  "@@locale": "en",
+
+  "commonAddEntry": "Add entry",
+  "commonIncome": "Income",
+  "commonExpense": "Expense",
+  "commonBalance": "Balance",
+  "commonSummary": "Summary",
+  "commonSettings": "Settings",
+  "commonSave": "Save",
+  "commonCancel": "Cancel",
+  "commonDelete": "Delete",
+  "commonTryAgain": "Try again",
+  "commonExportBackup": "Export backup",
+  "commonToday": "Today",
+  "commonYesterday": "Yesterday",
+
+  "categoryFood": "Food",
+  "categoryTransport": "Transport",
+  "categoryShopping": "Shopping",
+  "categoryBills": "Bills",
+  "categoryFun": "Fun",
+  "categoryHealth": "Health",
+  "categoryOther": "Other",
+  "categorySalary": "Salary",
+  "categorySide": "Side income",
+  "categoryTransfer": "Received",
+
+  "toastClose": "Close",
+
+  "startupUnreadableTitle": "Can't read your data",
+  "startupUnreadableBody": "{broken, select, entries{The entries saved on this device can't be read. Nothing has been deleted.} settings{The settings on this device can't be read. Nothing has been deleted.} other{The entries and settings on this device can't be read. Nothing has been deleted.}}",
+  "startupUnavailableTitle": "Can't open storage",
+  "startupUnavailableBody": "SnowFlow can't open the storage on this device. Nothing has been deleted.",
+  "startupPrivateWindowTip": "If this is a private window, try a normal window.",
+  "startupStartOver": "Start over (delete old data)",
+  "startupConfirmTitle": "Delete old data?",
+  "startupConfirmBody": "{broken, select, entries{All entries will be deleted. Your settings stay. This can't be undone.} settings{Settings go back to the defaults. Your entries stay. This can't be undone.} other{All entries and settings will be deleted. This can't be undone.}}",
+  "startupOtherTabTitle": "SnowFlow is open in another tab",
+  "startupOtherTabBody": "It works in one tab at a time so your data doesn't get mixed up.",
+  "startupUseHere": "Use it in this tab instead"
+}

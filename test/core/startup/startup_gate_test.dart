@@ -203,8 +203,8 @@ void main() {
   });
 
   testWidgets('a Thai device gets Thai text', (tester) async {
-    tester.platformDispatcher.localeTestValue = const Locale('th', 'TH');
-    addTearDown(tester.platformDispatcher.clearLocaleTestValue);
+    tester.platformDispatcher.localesTestValue = const [Locale('th', 'TH')];
+    addTearDown(tester.platformDispatcher.clearLocalesTestValue);
     tabLock.heldElsewhere = true;
 
     await pumpGate(tester);
@@ -222,7 +222,7 @@ void main() {
         ..physicalSize = const Size(360, 640)
         ..devicePixelRatio = 1;
       tester.platformDispatcher
-        ..localeTestValue = locale
+        ..localesTestValue = [locale]
         ..textScaleFactorTestValue = 1.3;
       addTearDown(tester.view.reset);
       addTearDown(tester.platformDispatcher.clearAllTestValues);

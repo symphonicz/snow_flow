@@ -159,7 +159,9 @@ const c = DividerThemeData(color: Colors.transparent);
               .listSync(recursive: true)
               .whereType<File>()
               .where((f) => f.path.endsWith('.dart')))
-        file.path.replaceAll(r'\', '/'): file.readAsStringSync(),
+        if (file.path.replaceAll(r'\', '/') case final path
+            when !isGenerated(path))
+          path: file.readAsStringSync(),
     };
     expect(sources, isNotEmpty);
     expect(findArchitectureViolations(sources), isEmpty);

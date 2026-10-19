@@ -3,11 +3,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:snow_flow/core/l10n/app_localizations.dart';
 import 'package:snow_flow/core/theme/app_theme.dart';
 import 'package:snow_flow/shared/domain/entry_category.dart';
 import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
 import 'package:snow_flow/shared/presentation/icons/line_icon.dart';
-import 'package:snow_flow/shared/presentation/toast/toast_texts.dart';
 
 /// Success uses `income`, error `expense`, info `brand` (#20).
 enum ToastKind { success, error, info }
@@ -182,7 +182,7 @@ class _ToastCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = AppColors.of(context);
-    final texts = ToastTexts.of(Localizations.localeOf(context));
+    final l10n = AppLocalizations.of(context);
     final (background, icon) = switch (toast.kind) {
       ToastKind.success => (colors.income, AppIcons.circleCheck),
       ToastKind.error => (colors.expense, AppIcons.circleAlert),
@@ -229,7 +229,7 @@ class _ToastCard extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
-                        child: Text(texts.tryAgain),
+                        child: Text(l10n.commonTryAgain),
                       ),
                   ],
                 ),
@@ -237,7 +237,7 @@ class _ToastCard extends StatelessWidget {
               Semantics(
                 container: true,
                 button: true,
-                label: texts.close,
+                label: l10n.toastClose,
                 excludeSemantics: true,
                 child: InkResponse(
                   onTap: onClose,

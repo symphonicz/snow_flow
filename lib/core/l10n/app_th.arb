@@ -1,0 +1,57 @@
+{
+  "@@locale": "th",
+
+  "commonAddEntry": "จดรายการ",
+  "commonIncome": "รายรับ",
+  "commonExpense": "รายจ่าย",
+  "commonBalance": "คงเหลือ",
+  "commonSummary": "สรุป",
+  "commonSettings": "ตั้งค่า",
+  "commonSave": "บันทึก",
+  "commonCancel": "ยกเลิก",
+  "commonDelete": "ลบ",
+  "commonTryAgain": "ลองอีกครั้ง",
+  "commonExportBackup": "ส่งออกไฟล์สำรอง",
+  "commonToday": "วันนี้",
+  "commonYesterday": "เมื่อวาน",
+
+  "categoryFood": "อาหาร",
+  "categoryTransport": "เดินทาง",
+  "categoryShopping": "ช้อปปิ้ง",
+  "categoryBills": "บิล/ค่าน้ำไฟ",
+  "categoryFun": "บันเทิง",
+  "categoryHealth": "สุขภาพ",
+  "categoryOther": "อื่นๆ",
+  "categorySalary": "เงินเดือน",
+  "categorySide": "รายได้เสริม",
+  "categoryTransfer": "ได้รับโอน",
+
+  "toastClose": "ปิด",
+  "@toastClose": {
+    "description": "Read out for the toast's ✕ button."
+  },
+
+  "startupUnreadableTitle": "อ่านข้อมูลไม่ได้",
+  "startupUnreadableBody": "{broken, select, entries{อ่านรายการที่บันทึกไว้ในเครื่องนี้ไม่ได้ แอปยังไม่ได้ลบอะไร} settings{อ่านการตั้งค่าในเครื่องนี้ไม่ได้ แอปยังไม่ได้ลบอะไร} other{อ่านรายการและการตั้งค่าในเครื่องนี้ไม่ได้ แอปยังไม่ได้ลบอะไร}}",
+  "@startupUnreadableBody": {
+    "description": "Says which data cannot be read and that nothing was deleted. broken is entries, settings, or both.",
+    "placeholders": {
+      "broken": {"type": "String"}
+    }
+  },
+  "startupUnavailableTitle": "เปิดที่เก็บข้อมูลไม่ได้",
+  "startupUnavailableBody": "SnowFlow เปิดที่เก็บข้อมูลในเครื่องนี้ไม่ได้ แอปยังไม่ได้ลบอะไร",
+  "startupPrivateWindowTip": "ถ้าเปิดในโหมดส่วนตัวอยู่ ลองเปิดในหน้าต่างปกติ",
+  "startupStartOver": "เริ่มใหม่ (ลบข้อมูลเดิม)",
+  "startupConfirmTitle": "ลบข้อมูลเดิม?",
+  "startupConfirmBody": "{broken, select, entries{รายการทั้งหมดจะถูกลบ การตั้งค่ายังอยู่ ลบแล้วกู้คืนไม่ได้} settings{การตั้งค่าจะกลับเป็นค่าเริ่มต้น รายการยังอยู่ ลบแล้วกู้คืนไม่ได้} other{รายการและการตั้งค่าทั้งหมดจะถูกลบ ลบแล้วกู้คืนไม่ได้}}",
+  "@startupConfirmBody": {
+    "description": "Says exactly what start over deletes, and what stays. broken is entries, settings, or both.",
+    "placeholders": {
+      "broken": {"type": "String"}
+    }
+  },
+  "startupOtherTabTitle": "SnowFlow เปิดอยู่ในแท็บอื่น",
+  "startupOtherTabBody": "ใช้ได้ทีละแท็บ เพื่อไม่ให้ข้อมูลทับกัน",
+  "startupUseHere": "ใช้ที่แท็บนี้แทน"
+}

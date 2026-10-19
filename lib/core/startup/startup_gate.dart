@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snow_flow/core/l10n/app_locale.dart';
+import 'package:snow_flow/core/l10n/app_localizations.dart';
 import 'package:snow_flow/core/startup/app_storage.dart';
 import 'package:snow_flow/core/startup/startup_cubit.dart';
 import 'package:snow_flow/core/startup/startup_state.dart';
-import 'package:snow_flow/core/startup/startup_texts.dart';
 import 'package:snow_flow/core/theme/app_theme.dart';
 import 'package:snow_flow/shared/domain/entry_category.dart';
 import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
@@ -52,8 +53,9 @@ class _StartupGateState extends State<StartupGate> {
 }
 
 /// Its own [MaterialApp]: these screens show before the app's theme, router
-/// and settings exist, so they follow the device's brightness and language.
-/// Light and dark come from the theme file of #51.
+/// and settings exist, so they follow the device's brightness and language
+/// (not Thai → English, #56). Light and dark come from the theme file of
+/// #51, the text from the ARB files of #52.
 class _StartupApp extends StatelessWidget {
   const _StartupApp({
     required this.state,
@@ -67,78 +69,104 @@ class _StartupApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final texts = StartupTexts.of(View.of(context).platformDispatcher.locale);
     return MaterialApp(
       title: 'SnowFlow',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
-      home: Scaffold(
-        body: switch (state) {
-          StartupLoading() || StartupReady() => const SizedBox.shrink(),
-          StartupOtherTab() => _StartupMessage(
-            icon: AppIcons.appWindow,
-            title: texts.otherTabTitle,
-            body: texts.otherTabBody,
-            actions: [
-              FilledButton(
-                onPressed: cubit.takeOver,
-                child: Text(texts.useHere),
-              ),
-            ],
-          ),
-          StartupUnavailable() => _StartupMessage(
-            icon: AppIcons.database,
-            title: texts.unavailableTitle,
-            body: isWeb
-                ? '${texts.unavailableBody} ${texts.privateWindowTip}'
-                : texts.unavailableBody,
-            actions: [
-              FilledButton(onPressed: cubit.retry, child: Text(texts.tryAgain)),
-            ],
-          ),
-          StartupUnreadable(:final broken) => _StartupMessage(
-            icon: AppIcons.circleAlert,
-            title: texts.unreadableTitle,
-            body: texts.unreadableBody(broken),
-            actions: [
-              FilledButton(onPressed: cubit.retry, child: Text(texts.tryAgain)),
-              // The import button of #66 goes here.
-              _StartOverButton(texts: texts, broken: broken, cubit: cubit),
-            ],
-          ),
-        },
-      ),
+      localeListResolutionCallback: (device, _) => deviceLocale(device),
+      supportedLocales: appLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      home: _StartupScreen(state: state, cubit: cubit, isWeb: isWeb),
     );
   }
 }
 
-class _StartOverButton extends StatelessWidget {
-  const _StartOverButton({
-    required this.texts,
-    required this.broken,
+class _StartupScreen extends StatelessWidget {
+  const _StartupScreen({
+    required this.state,
     required this.cubit,
+    required this.isWeb,
   });
 
-  final StartupTexts texts;
+  final StartupState state;
+  final StartupCubit cubit;
+  final bool isWeb;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      body: switch (state) {
+        StartupLoading() || StartupReady() => const SizedBox.shrink(),
+        StartupOtherTab() => _StartupMessage(
+          icon: AppIcons.appWindow,
+          title: l10n.startupOtherTabTitle,
+          body: l10n.startupOtherTabBody,
+          actions: [
+            FilledButton(
+              onPressed: cubit.takeOver,
+              child: Text(l10n.startupUseHere),
+            ),
+          ],
+        ),
+        StartupUnavailable() => _StartupMessage(
+          icon: AppIcons.database,
+          title: l10n.startupUnavailableTitle,
+          body: isWeb
+              ? '${l10n.startupUnavailableBody} ${l10n.startupPrivateWindowTip}'
+              : l10n.startupUnavailableBody,
+          actions: [
+            FilledButton(
+              onPressed: cubit.retry,
+              child: Text(l10n.commonTryAgain),
+            ),
+          ],
+        ),
+        StartupUnreadable(:final broken) => _StartupMessage(
+          icon: AppIcons.circleAlert,
+          title: l10n.startupUnreadableTitle,
+          body: l10n.startupUnreadableBody(_brokenKey(broken)),
+          actions: [
+            FilledButton(
+              onPressed: cubit.retry,
+              child: Text(l10n.commonTryAgain),
+            ),
+            // The import button of #66 goes here.
+            _StartOverButton(broken: broken, cubit: cubit),
+          ],
+        ),
+      },
+    );
+  }
+}
+
+/// The ARB select value: the one broken kind, or `both`.
+String _brokenKey(Set<StoredData> broken) =>
+    broken.length == 1 ? broken.single.name : 'both';
+
+class _StartOverButton extends StatelessWidget {
+  const _StartOverButton({required this.broken, required this.cubit});
+
   final Set<StoredData> broken;
   final StartupCubit cubit;
 
   Future<void> _confirm(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(texts.confirmTitle),
-        content: Text(texts.confirmBody(broken)),
+        title: Text(l10n.startupConfirmTitle),
+        content: Text(l10n.startupConfirmBody(_brokenKey(broken))),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(texts.cancel),
+            child: Text(l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: _deleteStyle(context),
-            child: Text(texts.confirmDelete),
+            child: Text(l10n.commonDelete),
           ),
         ],
       ),
@@ -151,7 +179,10 @@ class _StartOverButton extends StatelessWidget {
     return TextButton(
       onPressed: () => _confirm(context),
       style: _deleteStyle(context),
-      child: Text(texts.startOver, textAlign: TextAlign.center),
+      child: Text(
+        AppLocalizations.of(context).startupStartOver,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
