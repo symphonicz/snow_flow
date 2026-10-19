@@ -131,6 +131,13 @@ class _LineIconPainter extends CustomPainter {
   }
 }
 
+/// SVG path [data], e.g. `M4 11h16`, as a Flutter [Path].
+Path svgPath(String data) {
+  final path = Path();
+  writeSvgPathDataToPath(data, _PathWriter(path));
+  return path;
+}
+
 /// Feeds the commands of path_parsing into a Flutter [Path].
 class _PathWriter extends PathProxy {
   _PathWriter(this.path);

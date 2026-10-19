@@ -282,6 +282,11 @@ abstract final class AppText {
     const TextStyle(fontSize: 12, height: 1.3, fontWeight: FontWeight.w600),
   );
 
+  /// [label] in bold: "Add entry" under the add-entry button.
+  static final labelBold = font(
+    const TextStyle(fontSize: 12, height: 1.3, fontWeight: FontWeight.w700),
+  );
+
   /// Material's own styles mapped onto the scale above. The ones not in the
   /// scale get the app's fonts too.
   static TextTheme _textTheme(TextTheme base, AppColors colors) {
@@ -413,6 +418,15 @@ abstract final class AppShadows {
   ];
 }
 
+/// The colours of the app icon's SVG (brief §9), drawn by AppLogo. They are
+/// part of the artwork, so both themes use the same ones.
+abstract final class AppLogoColors {
+  static const paper = Color(0xFFFFFFFF);
+  static const shade = Color(0xFFDCE8EE);
+  static const wing = Color(0xFF2E3A44);
+  static const ink = Color(0xFF14202A);
+}
+
 /// Sizes that are not spacing: touch targets, icons, widths.
 abstract final class AppSizes {
   /// Smallest height of anything tappable.
@@ -428,6 +442,13 @@ abstract final class AppSizes {
 
   /// Tint ring around the add-entry button.
   static const addRing = 6.0;
+
+  /// The mobile add-entry button, and how far it rises above the bar.
+  static const addButton = 58.0;
+  static const addLift = 28.0;
+
+  /// The app logo in the mobile header.
+  static const logo = 32.0;
 
   /// From this width on, the web/tablet layout is used.
   static const webBreakpoint = 900.0;
@@ -502,6 +523,20 @@ abstract final class AppTheme {
         errorBorder: InputBorder.none,
         focusedErrorBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
+      ),
+      // The mobile entry form sheet: rounded top with a handle (brief §7).
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: colors.surface,
+        modalBackgroundColor: colors.surface,
+        surfaceTintColor: Colors.transparent,
+        modalBarrierColor: colors.scrim,
+        showDragHandle: true,
+        dragHandleColor: colors.ink3.withValues(alpha: .4),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppRadius.xl),
+          ),
+        ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: colors.surface,

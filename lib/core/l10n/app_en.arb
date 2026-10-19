@@ -2,6 +2,7 @@
   "@@locale": "en",
 
   "commonAddEntry": "Add entry",
+  "commonEntries": "Entries",
   "commonIncome": "Income",
   "commonExpense": "Expense",
   "commonBalance": "Balance",
@@ -14,6 +15,7 @@
   "commonExportBackup": "Export backup",
   "commonToday": "Today",
   "commonYesterday": "Yesterday",
+  "commonBack": "Back",
 
   "categoryFood": "Food",
   "categoryTransport": "Transport",

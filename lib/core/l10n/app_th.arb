@@ -2,6 +2,7 @@
   "@@locale": "th",
 
   "commonAddEntry": "จดรายการ",
+  "commonEntries": "รายการ",
   "commonIncome": "รายรับ",
   "commonExpense": "รายจ่าย",
   "commonBalance": "คงเหลือ",
@@ -14,6 +15,7 @@
   "commonExportBackup": "ส่งออกไฟล์สำรอง",
   "commonToday": "วันนี้",
   "commonYesterday": "เมื่อวาน",
+  "commonBack": "กลับ",
 
   "categoryFood": "อาหาร",
   "categoryTransport": "เดินทาง",

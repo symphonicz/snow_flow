@@ -83,8 +83,11 @@ void main() {
     expect(paint.center, box.center);
   });
 
-  test('the app has every icon #51 asks for', () {
+  test('the app has every icon #51 and #59 ask for', () {
     expect(AppIcons.all.keys, {
+      'entries',
+      'summary',
+      'back',
       'chevronDown',
       'calendar',
       'clock',

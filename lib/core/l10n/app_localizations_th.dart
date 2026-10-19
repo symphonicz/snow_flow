@@ -12,6 +12,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get commonAddEntry => 'จดรายการ';
 
   @override
+  String get commonEntries => 'รายการ';
+
+  @override
   String get commonIncome => 'รายรับ';
 
   @override
@@ -46,6 +49,9 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get commonYesterday => 'เมื่อวาน';
+
+  @override
+  String get commonBack => 'กลับ';
 
   @override
   String get categoryFood => 'อาหาร';

@@ -98,7 +98,26 @@ abstract final class AppIcons {
     ),
   ];
 
+  /// The entries tab: a rounded page of lines, its snow dot ending the last.
+  static const entries = [
+    RectShape(x: 4.5, y: 3.5, width: 15, height: 17, rx: 4.5),
+    PathShape('M8.5 9h7M8.5 13h7M8.5 17h3.5'),
+    CircleShape(cx: 15.2, cy: 17, r: .5),
+  ];
+
+  /// The summary tab: three round bars, a snow dot above the shortest.
+  static const summary = [
+    PathShape('M6.5 19.5v-6M12 19.5v-14M17.5 19.5v-9'),
+    CircleShape(cx: 6.5, cy: 9.6, r: .5),
+  ];
+
+  /// Back (an arrow, so no snow dot).
+  static const back = [PathShape('M19 12H5.5M11 6l-6 6 6 6')];
+
   static const all = {
+    'entries': entries,
+    'summary': summary,
+    'back': back,
     'chevronDown': chevronDown,
     'calendar': calendar,
     'clock': clock,
