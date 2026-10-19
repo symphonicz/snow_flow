@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'จดรายการ'**
   String get commonAddEntry;
 
+  /// No description provided for @commonEntries.
+  ///
+  /// In th, this message translates to:
+  /// **'รายการ'**
+  String get commonEntries;
+
   /// No description provided for @commonIncome.
   ///
   /// In th, this message translates to:
@@ -175,6 +181,12 @@ abstract class AppLocalizations {
   /// In th, this message translates to:
   /// **'เมื่อวาน'**
   String get commonYesterday;
+
+  /// No description provided for @commonBack.
+  ///
+  /// In th, this message translates to:
+  /// **'กลับ'**
+  String get commonBack;
 
   /// No description provided for @categoryFood.
   ///
