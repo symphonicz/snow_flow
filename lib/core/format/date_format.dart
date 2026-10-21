@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:snow_flow/core/l10n/app_locale.dart';
+import 'package:snow_flow/shared/domain/cycle.dart';
 import 'package:snow_flow/shared/domain/local_date.dart';
 
 /// Dates for display, day before month in both languages (#14). Thai shows
@@ -13,6 +14,12 @@ import 'package:snow_flow/shared/domain/local_date.dart';
 String formatMonth(int year, int month, Locale locale) =>
     '${_format('MMMM', locale, DateTime(year, month))} '
     '${_year(year, locale)}';
+
+/// The cycle's label (brief §4.4): its month, "ตุลาคม 2569", when it starts
+/// on the 1st; otherwise its range, "25 ก.ย. – 24 ต.ค. 2569".
+String formatCycle(Cycle cycle, Locale locale) => cycle.startDay == 1
+    ? formatMonth(cycle.year, cycle.month, locale)
+    : formatRange(cycle.start, cycle.end, locale);
 
 /// "25 ก.ย. – 24 ต.ค. 2569"; a range across new year shows both years,
 /// "25 ธ.ค. 2569 – 24 ม.ค. 2570" (#12).

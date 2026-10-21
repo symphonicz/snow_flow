@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:snow_flow/core/format/date_format.dart';
+import 'package:snow_flow/shared/domain/cycle.dart';
 import 'package:snow_flow/shared/domain/local_date.dart';
 
 const _th = Locale('th');
@@ -33,6 +34,35 @@ void main() {
 
       expect(formatRange(start, end, _th), '25 ธ.ค. 2569 – 24 ม.ค. 2570');
       expect(formatRange(start, end, _en), '25 Dec 2026 – 24 Jan 2027');
+    });
+  });
+
+  group('formatCycle', () {
+    test('a cycle starting on the 1st shows the month name', () {
+      final cycle = Cycle(2026, 10, startDay: 1);
+
+      expect(formatCycle(cycle, _th), 'ตุลาคม 2569');
+      expect(formatCycle(cycle, _en), 'October 2026');
+    });
+
+    test('any other start day shows the range', () {
+      final cycle = Cycle(2026, 9, startDay: 25);
+
+      expect(formatCycle(cycle, _th), '25 ก.ย. – 24 ต.ค. 2569');
+      expect(formatCycle(cycle, _en), '25 Sep – 24 Oct 2026');
+    });
+
+    test('a cycle across new year shows both years (#12)', () {
+      final cycle = Cycle(2026, 12, startDay: 25);
+
+      expect(formatCycle(cycle, _th), '25 ธ.ค. 2569 – 24 ม.ค. 2570');
+      expect(formatCycle(cycle, _en), '25 Dec 2026 – 24 Jan 2027');
+    });
+
+    test('31 shows the day the short month really starts', () {
+      final cycle = Cycle(2028, 2, startDay: 31);
+
+      expect(formatCycle(cycle, _th), '29 ก.พ. – 30 มี.ค. 2571');
     });
   });
 
