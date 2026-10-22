@@ -2,8 +2,11 @@
 /// allowed to import every feature (ADR 0003).
 library;
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snow_flow/core/l10n/app_localizations.dart';
+import 'package:snow_flow/features/entries/presentation/entries_cubit.dart';
 import 'package:snow_flow/features/entries/presentation/entries_page.dart';
 import 'package:snow_flow/features/entry_form/presentation/entry_form_sheet.dart';
 import 'package:snow_flow/features/settings/presentation/settings_page.dart';
@@ -39,7 +42,15 @@ GoRouter createRouter() {
             routes: [
               GoRoute(
                 path: entriesPath,
-                builder: (context, state) => const EntriesPage(),
+                builder: (context, state) => BlocProvider(
+                  create: (_) => GetIt.instance<EntriesCubit>()..start(),
+                  child: EntriesPage(
+                    onOpenEntry: (context, entry) =>
+                        showEntryForm(context, entry: entry),
+                    // The other-currency note (#12).
+                    onOpenSummary: (context) => context.go(summaryPath),
+                  ),
+                ),
               ),
             ],
           ),

@@ -20,6 +20,21 @@ class CurrencyTotals extends Equatable {
     return ratio > 1 ? 1.0 : ratio;
   }
 
+  /// Expense over income in whole percent for "ใช้ไปแล้ว X%", past 100 when
+  /// spending more than the income (#60 Q2). Rounds half up, but any
+  /// spending shows at least 1 and below the income never shows 100. Null
+  /// with no income.
+  int? get spentPercent {
+    final income = this.income.minorUnits;
+    final expense = this.expense.minorUnits;
+    if (income <= 0) return null;
+    // Integers only, so no double rounds the half away.
+    final percent = (200 * expense + income) ~/ (2 * income);
+    if (expense > 0 && percent == 0) return 1;
+    if (expense < income && percent >= 100) return 99;
+    return percent;
+  }
+
   @override
   List<Object> get props => [income, expense];
 }

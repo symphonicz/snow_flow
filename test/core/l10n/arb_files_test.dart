@@ -30,7 +30,7 @@ void main() {
   });
 
   test('keys start with the part of the app that uses them (#52)', () {
-    final prefix = RegExp('^(common|category|toast|startup)[A-Z]');
+    final prefix = RegExp('^(common|category|toast|startup|entries)[A-Z]');
     for (final key in thai.keys) {
       expect(key, matches(prefix));
     }

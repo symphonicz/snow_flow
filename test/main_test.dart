@@ -12,6 +12,7 @@ import 'package:snow_flow/shared/domain/usecases/watch_settings.dart';
 import 'package:snow_flow/shared/presentation/toast/toast.dart';
 
 import 'helpers/fakes/in_memory_settings_repository.dart';
+import 'helpers/pump_app.dart';
 
 /// One page that shows a translated word, to see the language on screen.
 GoRouter _wordRouter() => GoRouter(
@@ -30,6 +31,7 @@ void main() {
   setUp(() => settings = InMemorySettingsRepository());
 
   Future<void> pumpApp(WidgetTester tester, GoRouter router) async {
+    await useFakeDependencies(settings: settings);
     addTearDown(router.dispose);
     await tester.pumpWidget(
       SnowFlowApp(router: router, watchSettings: WatchSettings(settings)),

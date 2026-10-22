@@ -133,6 +133,9 @@ class AppColors extends ThemeExtension<AppColors> {
   /// Behind an open form sheet.
   final Color scrim;
 
+  /// A category tile is its category's colour at this opacity (brief §5).
+  static const categoryTileAlpha = .15;
+
   static AppColors of(BuildContext context) =>
       Theme.of(context).extension<AppColors>()!;
 
@@ -385,6 +388,12 @@ abstract final class AppRadius {
   static const lg = 20.0;
   static const xl = 26.0;
   static const pill = 999.0;
+
+  /// The income and expense tiles on the balance card (brief §8).
+  static const heroTile = 16.0;
+
+  /// The category tile (brief §5).
+  static const categoryTile = 13.0;
 }
 
 /// Shadows stand in for borders everywhere (brief §6).
@@ -449,6 +458,26 @@ abstract final class AppSizes {
 
   /// The app logo in the mobile header.
   static const logo = 32.0;
+
+  /// The category tile at the start of an entry row (brief §5).
+  static const categoryTile = 42.0;
+
+  /// Widest an entry row's amount gets, as a share of the row, so the
+  /// category and note always keep some room.
+  static const rowAmountShare = .45;
+
+  /// The see-through circle off the balance card's top right (brief §8).
+  static const heroCircle = 200.0;
+
+  /// The balance card's progress bar (brief §8).
+  static const progressBar = 8.0;
+
+  /// The surface circle holding the arrow on an income or expense tile.
+  static const heroArrow = 32.0;
+
+  /// Narrowest an income or expense tile gets before the two stack
+  /// (brief §8), at text scale 1.
+  static const heroTileMinWidth = 150.0;
 
   /// From this width on, the web/tablet layout is used.
   static const webBreakpoint = 900.0;
