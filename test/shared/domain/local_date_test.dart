@@ -70,4 +70,12 @@ void main() {
       LocalDate(2026, 10, 3),
     );
   });
+
+  test('nextDay crosses months, years and 29 February', () {
+    expect(LocalDate(2026, 10, 3).nextDay, LocalDate(2026, 10, 4));
+    expect(LocalDate(2026, 9, 30).nextDay, LocalDate(2026, 10, 1));
+    expect(LocalDate(2026, 12, 31).nextDay, LocalDate(2027, 1, 1));
+    expect(LocalDate(2028, 2, 28).nextDay, LocalDate(2028, 2, 29));
+    expect(LocalDate(2026, 2, 28).nextDay, LocalDate(2026, 3, 1));
+  });
 }

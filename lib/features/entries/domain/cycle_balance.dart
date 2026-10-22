@@ -1,31 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:snow_flow/shared/domain/currency.dart';
+import 'package:snow_flow/shared/domain/currency_totals.dart';
 import 'package:snow_flow/shared/domain/cycle.dart';
 import 'package:snow_flow/shared/domain/entry.dart';
 import 'package:snow_flow/shared/domain/entry_type.dart';
 import 'package:snow_flow/shared/domain/money.dart';
-
-/// Income and expense of one currency in one cycle (brief §4.4).
-class CurrencyTotals extends Equatable {
-  const CurrencyTotals({required this.income, required this.expense});
-
-  final Money income;
-  final Money expense;
-
-  /// Income minus expense; below zero when spending more than the income.
-  Money get balance => income - expense;
-
-  /// Expense over income for the balance card's bar, at most 1.0. Null with
-  /// no income, when the card shows "ยังไม่มีรายรับเดือนนี้" instead.
-  double? get spentRatio {
-    if (income.minorUnits <= 0) return null;
-    final ratio = expense.minorUnits / income.minorUnits;
-    return ratio > 1 ? 1.0 : ratio;
-  }
-
-  @override
-  List<Object> get props => [income, expense];
-}
 
 /// The totals of one cycle per currency, never converted between currencies
 /// and never carried over from another cycle (brief §4.3, §4.4). The card

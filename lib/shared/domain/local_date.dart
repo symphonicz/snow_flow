@@ -42,6 +42,13 @@ class LocalDate extends Equatable implements Comparable<LocalDate> {
   static bool _isLeapYear(int year) =>
       year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 
+  /// The day after; in UTC, so a daylight saving change never skips or
+  /// repeats a day.
+  LocalDate get nextDay {
+    final next = DateTime.utc(year, month, day + 1);
+    return LocalDate(next.year, next.month, next.day);
+  }
+
   @override
   int compareTo(LocalDate other) {
     if (year != other.year) return year.compareTo(other.year);
