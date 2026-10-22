@@ -40,5 +40,12 @@
   "startupConfirmBody": "{broken, select, entries{All entries will be deleted. Your settings stay. This can't be undone.} settings{Settings go back to the defaults. Your entries stay. This can't be undone.} other{All entries and settings will be deleted. This can't be undone.}}",
   "startupOtherTabTitle": "SnowFlow is open in another tab",
   "startupOtherTabBody": "It works in one tab at a time so your data doesn't get mixed up.",
-  "startupUseHere": "Use it in this tab instead"
+  "startupUseHere": "Use it in this tab instead",
+
+  "entriesBalanceTitle": "Balance this month",
+  "entriesSpent": "{percent}% of this month's income spent",
+  "entriesNoIncome": "No income this month yet",
+  "entriesOtherCurrencies": "There are entries in other currencies too. See Summary",
+  "entriesEmpty": "No entries yet. Tap Add entry to start",
+  "entriesUnreadable": "Couldn't read your entries"
 }

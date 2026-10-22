@@ -57,14 +57,20 @@ class CategoryIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = Theme.of(context).brightness == Brightness.dark;
     return LineIcon(
       category.icon,
       size: size,
-      color: Color(dark ? category.darkColor : category.lightColor),
+      color: categoryColor(context, category),
     );
   }
 }
+
+/// [category]'s colour in the current brightness (brief §5).
+Color categoryColor(BuildContext context, EntryCategory category) => Color(
+  Theme.of(context).brightness == Brightness.dark
+      ? category.darkColor
+      : category.lightColor,
+);
 
 class _LineIconPainter extends CustomPainter {
   _LineIconPainter(this.shapes, this.color);

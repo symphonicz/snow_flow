@@ -55,5 +55,21 @@
   },
   "startupOtherTabTitle": "SnowFlow เปิดอยู่ในแท็บอื่น",
   "startupOtherTabBody": "ใช้ได้ทีละแท็บ เพื่อไม่ให้ข้อมูลทับกัน",
-  "startupUseHere": "ใช้ที่แท็บนี้แทน"
+  "startupUseHere": "ใช้ที่แท็บนี้แทน",
+
+  "entriesBalanceTitle": "คงเหลือเดือนนี้",
+  "entriesSpent": "ใช้ไปแล้ว {percent}% ของรายรับเดือนนี้",
+  "@entriesSpent": {
+    "description": "Under the balance card bar. percent is expense over income, whole, and may pass 100.",
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "entriesNoIncome": "ยังไม่มีรายรับเดือนนี้",
+  "entriesOtherCurrencies": "มีรายการสกุลอื่นด้วย ดูในสรุป",
+  "@entriesOtherCurrencies": {
+    "description": "Under the balance card when the cycle has entries in another currency; opens the summary."
+  },
+  "entriesEmpty": "ยังไม่มีรายการ กดจดรายการเพื่อเริ่ม",
+  "entriesUnreadable": "อ่านรายการไม่ได้"
 }

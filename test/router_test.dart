@@ -5,6 +5,12 @@ import 'package:snow_flow/features/entry_form/presentation/entry_form_sheet.dart
 import 'package:snow_flow/features/settings/presentation/settings_page.dart';
 import 'package:snow_flow/features/summary/presentation/summary_page.dart';
 import 'package:snow_flow/router.dart';
+import 'package:snow_flow/shared/domain/currency.dart';
+import 'package:snow_flow/shared/domain/entry.dart';
+import 'package:snow_flow/shared/domain/entry_category.dart';
+import 'package:snow_flow/shared/domain/entry_type.dart';
+import 'package:snow_flow/shared/domain/local_date.dart';
+import 'package:snow_flow/shared/domain/money.dart';
 import 'package:snow_flow/shared/presentation/app_logo.dart';
 import 'package:snow_flow/shared/presentation/icons/app_icons.dart';
 import 'package:snow_flow/shared/presentation/icons/line_icon.dart';
@@ -73,6 +79,47 @@ void main() {
       // The title and the tab label.
       expect(find.text('Summary'), findsNWidgets(2));
       expect(_settingsButton, findsOneWidget);
+    });
+  });
+
+  group('entries page', () {
+    // Today, so the entry is in the current cycle whenever the test runs.
+    final today = LocalDate.fromDateTime(DateTime.now());
+    final lunch = Entry(
+      id: 'lunch',
+      type: EntryType.expense,
+      amount: const Money(6050),
+      currency: Currency.thb,
+      category: Categories.food,
+      date: today,
+      note: 'Chicken rice',
+      created: 1,
+    );
+
+    testWidgets('tapping an entry opens the form to edit it', (tester) async {
+      await pumpSnowFlowApp(tester, entries: [lunch]);
+
+      await tapAndSettle(tester, find.text('Chicken rice'));
+
+      final sheet = tester.widget<EntryFormSheet>(find.byType(EntryFormSheet));
+      expect(sheet.entry, lunch);
+    });
+
+    testWidgets('the other-currency note opens the summary tab (#12)', (
+      tester,
+    ) async {
+      final router = await pumpSnowFlowApp(
+        tester,
+        entries: [
+          lunch,
+          lunch.copyWith(id: 'yen', currency: Currency.jpy),
+        ],
+      );
+
+      await tapAndSettle(tester, find.textContaining('other currencies'));
+
+      expect(find.byType(SummaryPage), findsOneWidget);
+      expect(router.state.matchedLocation, summaryPath);
     });
   });
 

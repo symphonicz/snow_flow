@@ -114,10 +114,19 @@ abstract final class AppIcons {
   /// Back (an arrow, so no snow dot).
   static const back = [PathShape('M19 12H5.5M11 6l-6 6 6 6')];
 
+  /// Money coming in, the balance card's income tile: down-left like the
+  /// "received" category (#60 Q4).
+  static const arrowIn = [PathShape('M17 7 7 17M7 9.5V17h7.5')];
+
+  /// Money going out, the balance card's expense tile (#60 Q4).
+  static const arrowOut = [PathShape('M7 17 17 7M9.5 7H17v7.5')];
+
   static const all = {
     'entries': entries,
     'summary': summary,
     'back': back,
+    'arrowIn': arrowIn,
+    'arrowOut': arrowOut,
     'chevronDown': chevronDown,
     'calendar': calendar,
     'clock': clock,

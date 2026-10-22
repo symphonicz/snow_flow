@@ -141,4 +141,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get startupUseHere => 'Use it in this tab instead';
+
+  @override
+  String get entriesBalanceTitle => 'Balance this month';
+
+  @override
+  String entriesSpent(int percent) {
+    return '$percent% of this month\'s income spent';
+  }
+
+  @override
+  String get entriesNoIncome => 'No income this month yet';
+
+  @override
+  String get entriesOtherCurrencies =>
+      'There are entries in other currencies too. See Summary';
+
+  @override
+  String get entriesEmpty => 'No entries yet. Tap Add entry to start';
+
+  @override
+  String get entriesUnreadable => 'Couldn\'t read your entries';
 }

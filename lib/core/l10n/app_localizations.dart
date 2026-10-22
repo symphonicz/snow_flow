@@ -319,6 +319,42 @@ abstract class AppLocalizations {
   /// In th, this message translates to:
   /// **'ใช้ที่แท็บนี้แทน'**
   String get startupUseHere;
+
+  /// No description provided for @entriesBalanceTitle.
+  ///
+  /// In th, this message translates to:
+  /// **'คงเหลือเดือนนี้'**
+  String get entriesBalanceTitle;
+
+  /// Under the balance card bar. percent is expense over income, whole, and may pass 100.
+  ///
+  /// In th, this message translates to:
+  /// **'ใช้ไปแล้ว {percent}% ของรายรับเดือนนี้'**
+  String entriesSpent(int percent);
+
+  /// No description provided for @entriesNoIncome.
+  ///
+  /// In th, this message translates to:
+  /// **'ยังไม่มีรายรับเดือนนี้'**
+  String get entriesNoIncome;
+
+  /// Under the balance card when the cycle has entries in another currency; opens the summary.
+  ///
+  /// In th, this message translates to:
+  /// **'มีรายการสกุลอื่นด้วย ดูในสรุป'**
+  String get entriesOtherCurrencies;
+
+  /// No description provided for @entriesEmpty.
+  ///
+  /// In th, this message translates to:
+  /// **'ยังไม่มีรายการ กดจดรายการเพื่อเริ่ม'**
+  String get entriesEmpty;
+
+  /// No description provided for @entriesUnreadable.
+  ///
+  /// In th, this message translates to:
+  /// **'อ่านรายการไม่ได้'**
+  String get entriesUnreadable;
 }
 
 class _AppLocalizationsDelegate

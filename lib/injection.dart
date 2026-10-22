@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:snow_flow/core/core_injection.dart';
+import 'package:snow_flow/features/entries/entries_injection.dart';
 import 'package:snow_flow/features/entry_form/entry_form_injection.dart';
 import 'package:snow_flow/features/settings/settings_injection.dart';
 import 'package:snow_flow/shared/shared_injection.dart';
@@ -12,6 +13,7 @@ Future<void> configureDependencies([GetIt? getIt]) async {
   final locator = getIt ?? GetIt.instance;
   await registerCore(locator);
   registerShared(locator);
+  registerEntries(locator);
   registerEntryForm(locator);
   registerSettings(locator);
 }

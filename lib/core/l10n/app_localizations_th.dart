@@ -135,4 +135,24 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get startupUseHere => 'ใช้ที่แท็บนี้แทน';
+
+  @override
+  String get entriesBalanceTitle => 'คงเหลือเดือนนี้';
+
+  @override
+  String entriesSpent(int percent) {
+    return 'ใช้ไปแล้ว $percent% ของรายรับเดือนนี้';
+  }
+
+  @override
+  String get entriesNoIncome => 'ยังไม่มีรายรับเดือนนี้';
+
+  @override
+  String get entriesOtherCurrencies => 'มีรายการสกุลอื่นด้วย ดูในสรุป';
+
+  @override
+  String get entriesEmpty => 'ยังไม่มีรายการ กดจดรายการเพื่อเริ่ม';
+
+  @override
+  String get entriesUnreadable => 'อ่านรายการไม่ได้';
 }
