@@ -285,6 +285,20 @@ abstract final class AppText {
     const TextStyle(fontSize: 12, height: 1.3, fontWeight: FontWeight.w600),
   );
 
+  /// [body] in bold: the selected segment (brief §8).
+  static final bodyBold = font(
+    const TextStyle(fontSize: 16, height: 1.55, fontWeight: FontWeight.w700),
+  );
+
+  /// The number in the form's amount field (brief §8: 34–36 bold); it
+  /// shrinks rather than overflow.
+  static final amountInput = font(
+    const TextStyle(fontSize: 34, height: 1.2, fontWeight: FontWeight.w700),
+  );
+
+  /// Smallest the amount field's number shrinks to.
+  static const amountInputMinSize = 14.0;
+
   /// [label] in bold: "Add entry" under the add-entry button.
   static final labelBold = font(
     const TextStyle(fontSize: 12, height: 1.3, fontWeight: FontWeight.w700),
@@ -394,6 +408,10 @@ abstract final class AppRadius {
 
   /// The category tile (brief §5).
   static const categoryTile = 13.0;
+
+  /// The segmented track, and the selected segment inside it (brief §8).
+  static const segmented = 12.0;
+  static const segment = 8.0;
 }
 
 /// Shadows stand in for borders everywhere (brief §6).
@@ -487,6 +505,32 @@ abstract final class AppSizes {
 
   /// Widest a toast gets on the web layout (#20).
   static const toastMaxWidth = 320.0;
+
+  /// Text fields, the date field and the dropdowns (brief §8).
+  static const field = 48.0;
+
+  /// The form's amount field: lower than the 68 of brief §8, as the owner
+  /// asked after trying it (#61). Still fits the 34 number at text scale 1.3.
+  static const amountField = 60.0;
+
+  /// Kept free after the typed amount for the cursor, so the number shrinks
+  /// before the cursor would scroll it.
+  static const cursorRoom = 4.0;
+
+  /// The brand ring around the amount field and the chosen category
+  /// (brief §8).
+  static const selectedRing = 2.0;
+
+  /// A segment; the track adds [segmentedPadding] around it (brief §8).
+  static const segment = 36.0;
+  static const segmentedPadding = 4.0;
+
+  /// A button of the form's category picker, four to a row (brief §8).
+  static const categoryButton = 78.0;
+  static const categoryColumns = 4;
+
+  /// The main button of a form or a sheet.
+  static const button = 48.0;
 }
 
 /// The light and dark [ThemeData] built from the tokens.

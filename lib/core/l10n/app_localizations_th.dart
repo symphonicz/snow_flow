@@ -155,4 +155,49 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get entriesUnreadable => 'อ่านรายการไม่ได้';
+
+  @override
+  String get entryFormEditTitle => 'แก้ไขรายการ';
+
+  @override
+  String get entryFormAmount => 'จำนวนเงิน';
+
+  @override
+  String get entryFormAmountError => 'ใส่จำนวนเงินที่มากกว่า 0';
+
+  @override
+  String get entryFormCurrency => 'สกุลเงิน';
+
+  @override
+  String get entryFormCategory => 'หมวด';
+
+  @override
+  String get entryFormDate => 'วันที่';
+
+  @override
+  String get entryFormNote => 'โน้ต (ไม่บังคับ)';
+
+  @override
+  String get entryFormNoteHint => 'เช่น ข้าวมันไก่';
+
+  @override
+  String get entryFormSaved => 'บันทึกรายการแล้ว';
+
+  @override
+  String get entryFormDeleted => 'ลบรายการแล้ว';
+
+  @override
+  String get entryFormSaveFailed => 'บันทึกรายการไม่สำเร็จ';
+
+  @override
+  String get entryFormDeleteFailed => 'ลบรายการไม่สำเร็จ';
+
+  @override
+  String get entryFormGone => 'รายการนี้ถูกลบไปแล้ว';
+
+  @override
+  String get entryFormDeleteTitle => 'ลบรายการนี้?';
+
+  @override
+  String get entryFormDeleteBody => 'ลบแล้วกู้คืนไม่ได้';
 }

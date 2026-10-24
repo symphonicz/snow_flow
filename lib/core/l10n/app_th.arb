@@ -71,5 +71,24 @@
     "description": "Under the balance card when the cycle has entries in another currency; opens the summary."
   },
   "entriesEmpty": "ยังไม่มีรายการ กดจดรายการเพื่อเริ่ม",
-  "entriesUnreadable": "อ่านรายการไม่ได้"
+  "entriesUnreadable": "อ่านรายการไม่ได้",
+
+  "entryFormEditTitle": "แก้ไขรายการ",
+  "entryFormAmount": "จำนวนเงิน",
+  "entryFormAmountError": "ใส่จำนวนเงินที่มากกว่า 0",
+  "entryFormCurrency": "สกุลเงิน",
+  "entryFormCategory": "หมวด",
+  "entryFormDate": "วันที่",
+  "entryFormNote": "โน้ต (ไม่บังคับ)",
+  "entryFormNoteHint": "เช่น ข้าวมันไก่",
+  "entryFormSaved": "บันทึกรายการแล้ว",
+  "entryFormDeleted": "ลบรายการแล้ว",
+  "entryFormSaveFailed": "บันทึกรายการไม่สำเร็จ",
+  "entryFormDeleteFailed": "ลบรายการไม่สำเร็จ",
+  "entryFormGone": "รายการนี้ถูกลบไปแล้ว",
+  "@entryFormGone": {
+    "description": "The entry being edited was deleted meanwhile, e.g. by an import."
+  },
+  "entryFormDeleteTitle": "ลบรายการนี้?",
+  "entryFormDeleteBody": "ลบแล้วกู้คืนไม่ได้"
 }

@@ -41,7 +41,7 @@ MoneyParts moneyParts(Money money, Currency currency, {bool signed = false}) {
       : '';
   return MoneyParts(
     sign: sign,
-    symbol: _symbols[currency]!,
+    symbol: currencySymbol(currency),
     number: _number(minorUnits.abs(), currency.fractionDigits),
   );
 }
@@ -49,6 +49,9 @@ MoneyParts moneyParts(Money money, Currency currency, {bool signed = false}) {
 /// [moneyParts] as one string, e.g. `฿1,200.00`, `¥500` or `−฿60.00`.
 String formatMoney(Money money, Currency currency, {bool signed = false}) =>
     '${moneyParts(money, currency, signed: signed)}';
+
+/// The short symbol of [currency], e.g. `฿` or `NT$` (#52).
+String currencySymbol(Currency currency) => _symbols[currency]!;
 
 final _symbols = {
   for (final currency in Currency.values)
