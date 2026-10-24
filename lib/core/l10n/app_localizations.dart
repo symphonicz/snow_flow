@@ -355,6 +355,96 @@ abstract class AppLocalizations {
   /// In th, this message translates to:
   /// **'อ่านรายการไม่ได้'**
   String get entriesUnreadable;
+
+  /// No description provided for @entryFormEditTitle.
+  ///
+  /// In th, this message translates to:
+  /// **'แก้ไขรายการ'**
+  String get entryFormEditTitle;
+
+  /// No description provided for @entryFormAmount.
+  ///
+  /// In th, this message translates to:
+  /// **'จำนวนเงิน'**
+  String get entryFormAmount;
+
+  /// No description provided for @entryFormAmountError.
+  ///
+  /// In th, this message translates to:
+  /// **'ใส่จำนวนเงินที่มากกว่า 0'**
+  String get entryFormAmountError;
+
+  /// No description provided for @entryFormCurrency.
+  ///
+  /// In th, this message translates to:
+  /// **'สกุลเงิน'**
+  String get entryFormCurrency;
+
+  /// No description provided for @entryFormCategory.
+  ///
+  /// In th, this message translates to:
+  /// **'หมวด'**
+  String get entryFormCategory;
+
+  /// No description provided for @entryFormDate.
+  ///
+  /// In th, this message translates to:
+  /// **'วันที่'**
+  String get entryFormDate;
+
+  /// No description provided for @entryFormNote.
+  ///
+  /// In th, this message translates to:
+  /// **'โน้ต (ไม่บังคับ)'**
+  String get entryFormNote;
+
+  /// No description provided for @entryFormNoteHint.
+  ///
+  /// In th, this message translates to:
+  /// **'เช่น ข้าวมันไก่'**
+  String get entryFormNoteHint;
+
+  /// No description provided for @entryFormSaved.
+  ///
+  /// In th, this message translates to:
+  /// **'บันทึกรายการแล้ว'**
+  String get entryFormSaved;
+
+  /// No description provided for @entryFormDeleted.
+  ///
+  /// In th, this message translates to:
+  /// **'ลบรายการแล้ว'**
+  String get entryFormDeleted;
+
+  /// No description provided for @entryFormSaveFailed.
+  ///
+  /// In th, this message translates to:
+  /// **'บันทึกรายการไม่สำเร็จ'**
+  String get entryFormSaveFailed;
+
+  /// No description provided for @entryFormDeleteFailed.
+  ///
+  /// In th, this message translates to:
+  /// **'ลบรายการไม่สำเร็จ'**
+  String get entryFormDeleteFailed;
+
+  /// The entry being edited was deleted meanwhile, e.g. by an import.
+  ///
+  /// In th, this message translates to:
+  /// **'รายการนี้ถูกลบไปแล้ว'**
+  String get entryFormGone;
+
+  /// No description provided for @entryFormDeleteTitle.
+  ///
+  /// In th, this message translates to:
+  /// **'ลบรายการนี้?'**
+  String get entryFormDeleteTitle;
+
+  /// No description provided for @entryFormDeleteBody.
+  ///
+  /// In th, this message translates to:
+  /// **'ลบแล้วกู้คืนไม่ได้'**
+  String get entryFormDeleteBody;
 }
 
 class _AppLocalizationsDelegate

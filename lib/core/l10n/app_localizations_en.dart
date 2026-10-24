@@ -162,4 +162,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get entriesUnreadable => 'Couldn\'t read your entries';
+
+  @override
+  String get entryFormEditTitle => 'Edit entry';
+
+  @override
+  String get entryFormAmount => 'Amount';
+
+  @override
+  String get entryFormAmountError => 'Enter an amount above 0';
+
+  @override
+  String get entryFormCurrency => 'Currency';
+
+  @override
+  String get entryFormCategory => 'Category';
+
+  @override
+  String get entryFormDate => 'Date';
+
+  @override
+  String get entryFormNote => 'Note (optional)';
+
+  @override
+  String get entryFormNoteHint => 'e.g. Chicken rice';
+
+  @override
+  String get entryFormSaved => 'Entry saved';
+
+  @override
+  String get entryFormDeleted => 'Entry deleted';
+
+  @override
+  String get entryFormSaveFailed => 'Couldn\'t save the entry';
+
+  @override
+  String get entryFormDeleteFailed => 'Couldn\'t delete the entry';
+
+  @override
+  String get entryFormGone => 'This entry was already deleted';
+
+  @override
+  String get entryFormDeleteTitle => 'Delete this entry?';
+
+  @override
+  String get entryFormDeleteBody => 'You can\'t undo this.';
 }

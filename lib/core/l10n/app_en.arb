@@ -47,5 +47,21 @@
   "entriesNoIncome": "No income this month yet",
   "entriesOtherCurrencies": "There are entries in other currencies too. See Summary",
   "entriesEmpty": "No entries yet. Tap Add entry to start",
-  "entriesUnreadable": "Couldn't read your entries"
+  "entriesUnreadable": "Couldn't read your entries",
+
+  "entryFormEditTitle": "Edit entry",
+  "entryFormAmount": "Amount",
+  "entryFormAmountError": "Enter an amount above 0",
+  "entryFormCurrency": "Currency",
+  "entryFormCategory": "Category",
+  "entryFormDate": "Date",
+  "entryFormNote": "Note (optional)",
+  "entryFormNoteHint": "e.g. Chicken rice",
+  "entryFormSaved": "Entry saved",
+  "entryFormDeleted": "Entry deleted",
+  "entryFormSaveFailed": "Couldn't save the entry",
+  "entryFormDeleteFailed": "Couldn't delete the entry",
+  "entryFormGone": "This entry was already deleted",
+  "entryFormDeleteTitle": "Delete this entry?",
+  "entryFormDeleteBody": "You can't undo this."
 }

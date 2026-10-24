@@ -1,7 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:snow_flow/features/entries/presentation/entries_page.dart';
 import 'package:snow_flow/features/entry_form/presentation/entry_form_sheet.dart';
+import 'package:snow_flow/features/entry_form/presentation/entry_form_cubit.dart';
 import 'package:snow_flow/features/settings/presentation/settings_page.dart';
 import 'package:snow_flow/features/summary/presentation/summary_page.dart';
 import 'package:snow_flow/router.dart';
@@ -101,8 +103,10 @@ void main() {
 
       await tapAndSettle(tester, find.text('Chicken rice'));
 
-      final sheet = tester.widget<EntryFormSheet>(find.byType(EntryFormSheet));
-      expect(sheet.entry, lunch);
+      final form = tester
+          .element(find.byType(EntryFormSheet))
+          .read<EntryFormCubit>();
+      expect(form.state.original, lunch);
     });
 
     testWidgets('the other-currency note opens the summary tab (#12)', (
